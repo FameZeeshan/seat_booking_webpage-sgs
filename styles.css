@@ -1,14 +1,20 @@
-/* Reset and basic styling */
+/* styles.css */
+
+/* Reset default margin and padding */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Light background color */
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
@@ -16,76 +22,74 @@ header {
   margin-bottom: 20px;
 }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-h4 {
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px; /* Adjust max-width as needed */
+  background-color: #fff; /* White background for containers */
+  padding: 20px;
   margin-bottom: 20px;
-}
-.second-set {
-  display: flex;
-  flex-wrap: wrap;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
 }
 
 .label-container {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 20px;
+  align-items: center;
 }
 
-.label-container > * {
-  margin-bottom: 10px;
+.first-set,
+.second-set,
+.third-set,
+.fourth-set {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-label {
-  font-weight: bold;
+.second-set {
+  flex-wrap: wrap;
 }
 
-input[type="text"],
-input[type="date"],
-select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  width: 150px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+#book-seat,
+#add-seat,
+#edit-seat,
+#delete-seats {
+  background-color: #4caf50; /* Green background */
+  color: white;
   border: none;
-  border-radius: 4px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 5px;
 }
 
-button:hover {
-  background-color: #0056b3;
+#book-seat:hover,
+#add-seat:hover,
+#edit-seat:hover,
+#delete-seats:hover {
+  background-color: #45a049; /* Darker green on hover */
 }
 
-/* Seat map styling */
+#book-seat:disabled,
+#add-seat:disabled,
+#edit-seat:disabled,
+#delete-seats:disabled {
+  background-color: #cccccc; /* Grayed out for disabled */
+  cursor: not-allowed;
+}
+
 .seat-map {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .seat {
@@ -99,11 +103,10 @@ button:hover {
   border-radius: 5px;
   cursor: pointer;
   position: relative;
-  transition: background-color 0.3s ease;
 }
 
 .seat.selected {
-  background-color: #ffc107;
+  background-color: #ffc107; /* Yellow for selected */
 }
 
 .seat.booked-morning {
@@ -122,15 +125,10 @@ button:hover {
   font-weight: bold;
 }
 
-/* Summary table styling */
 #summary-table {
   width: 100%;
+  margin-top: 20px;
   border-collapse: collapse;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 20px;
 }
 
 #summary-table th,
@@ -152,26 +150,27 @@ button:hover {
   background-color: #e0e0e0;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .container {
-    padding: 10px;
+/* Responsive adjustments */
+@media only screen and (max-width: 600px) {
+  .first-set,
+  .second-set,
+  .third-set,
+  .fourth-set {
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .seat {
-    width: 50px;
-    height: 50px;
-  }
-}
-
-@media (max-width: 576px) {
-  .container {
-    padding: 5px;
+  .first-set label,
+  .second-set label {
+    flex: 0 0 100%; /* Full width for labels on small screens */
   }
 
-  .seat {
-    width: 40px;
-    height: 40px;
-    font-size: 12px;
+  .second-set {
+    flex-wrap: wrap;
+  }
+
+  .start-date,
+  .end-date {
+    flex: 1 0 100%; /* Full width for date inputs on small screens */
   }
 }
