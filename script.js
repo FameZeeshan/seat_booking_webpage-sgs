@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterDateInput = document.getElementById("filter-date");
   const todayButton = document.getElementById("today-button");
   const summaryTableBody = document.querySelector("#summary-table tbody");
+  const exportButton = document.getElementById("export-data"); // Export button
 
   let seatNumbers = Array.from({ length: 20 }, (_, i) => 4001 + i); // Example initial seat numbers
 
@@ -60,8 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Please select a seat to edit.");
     }
   });
-
-  // Other event listeners and functions (e.g., booking functionality, seat availability check, etc.)
 
   // Example function for booking a seat
   bookSeatButton.addEventListener("click", () => {
@@ -153,6 +152,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const jobCodeList = document.getElementById("job-code-list");
     // Update job code list filter
     // Example: Update job code list options
+  }
+
+  // Export seat booking data to Excel
+  exportButton.addEventListener("click", () => {
+    // Prepare data for export
+    const data = prepareDataForExport();
+
+    // Create a new Excel workbook
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(data);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(wb, ws, "Seat Bookings");
+
+    // Generate a file download
+    XLSX.writeFile(wb, "seat_bookings.xlsx");
+  });
+
+  // Function to prepare data for export
+  function prepareDataForExport() {
+    // Example: Extract seat booking data from seatBookings object
+    const bookings = [];
+    for (const seatNumber in seatBookings) {
+      seatBookings[seatNumber].forEach((booking) => {
+        const { jobCode, timeSlot, startDate, endDate } = booking;
+        bookings.push({
+          SeatNumber: seatNumber,
+          JobCode: jobCode,
+          TimeSlot: timeSlot,
+          StartDate: startDate,
+          EndDate: endDate,
+        });
+      });
+    }
+    return bookings;
   }
 
   // Initialize view with default settings
