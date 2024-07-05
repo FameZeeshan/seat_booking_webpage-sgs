@@ -1,8 +1,34 @@
+/* styles.css */
+
 /* General styles */
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
   background-color: #f0f0f0;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+h4 {
+  font-size: 1.5em;
+  margin-top: 0;
+  color: #616161;
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .label-container {
@@ -12,16 +38,15 @@ body {
   margin-bottom: 10px;
 }
 
-/* Seat Map */
+/* Seat map styles */
 .seat-map {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   gap: 10px;
   margin-bottom: 20px;
 }
 
 .seat {
-  width: 60px;
   height: 60px;
   background-color: #cfd8dc;
   display: flex;
@@ -31,34 +56,16 @@ body {
   border-radius: 5px;
   cursor: pointer;
   position: relative;
-  transition: background-color 0.3s ease;
 }
 
-.seat.selected {
-  background-color: #ffc107; /* Yellow for selected seats */
-}
-
-.seat.booked-morning {
-  background-color: #ef5350; /* Red for morning */
-}
-
-.seat.booked-evening {
-  background-color: #66bb6a; /* Green for evening */
-}
-
-.seat.booked-full {
-  background-color: #42a5f5; /* Blue for full-time */
-}
-
-.seat-number {
-  font-weight: bold;
-}
-
-/* Summary Table */
+/* Summary table styles */
 #summary-table {
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 #summary-table th,
@@ -70,7 +77,6 @@ body {
 
 #summary-table th {
   background-color: #f0f0f0;
-  font-weight: bold;
 }
 
 #summary-table tbody tr:nth-child(even) {
@@ -81,19 +87,62 @@ body {
   background-color: #e0e0e0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .seat {
-    width: 80px;
-    height: 80px;
-    font-size: 14px;
-  }
+/* Form elements styles */
+input[type="text"],
+input[type="date"],
+select {
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: calc(100% - 20px); /* Adjust width */
+  max-width: 300px; /* Limit maximum width */
 }
 
-@media (max-width: 480px) {
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background-color: #757575;
+}
+
+button.secondary:hover {
+  background-color: #616161;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
   .seat {
-    width: 60px;
-    height: 60px;
-    font-size: 12px;
+    height: 50px;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  select,
+  button {
+    padding: 6px;
+    font-size: 0.9em;
   }
 }
