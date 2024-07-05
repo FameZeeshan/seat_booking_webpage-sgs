@@ -1,0 +1,99 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f0f0f0;
+}
+
+.label-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Seat Map */
+.seat-map {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.seat {
+  width: 60px;
+  height: 60px;
+  background-color: #cfd8dc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #78909c;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.seat.selected {
+  background-color: #ffc107; /* Yellow for selected seats */
+}
+
+.seat.booked-morning {
+  background-color: #ef5350; /* Red for morning */
+}
+
+.seat.booked-evening {
+  background-color: #66bb6a; /* Green for evening */
+}
+
+.seat.booked-full {
+  background-color: #42a5f5; /* Blue for full-time */
+}
+
+.seat-number {
+  font-weight: bold;
+}
+
+/* Summary Table */
+#summary-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+#summary-table th,
+#summary-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+#summary-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+#summary-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#summary-table tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .seat {
+    width: 80px;
+    height: 80px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .seat {
+    width: 60px;
+    height: 60px;
+    font-size: 12px;
+  }
+}
