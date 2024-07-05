@@ -13,29 +13,35 @@
     </header>
 
     <div class="container">
-      <label for="view-date">Select Date to View Availability:</label>
-      <input type="date" id="view-date" />
-      <button id="today-button">Today</button>
-    </div>
-
-    <div class="container">
       <div class="label-container">
-        <label for="job-code">Job Code:</label>
-        <input type="text" id="job-code" />
-        <label for="time-slot">Time Slot:</label>
-        <select id="time-slot">
-          <option value="morning">Morning</option>
-          <option value="evening">Evening</option>
-          <option value="full-time">Full Time</option>
-        </select>
-        <label for="start-date">Start Date:</label>
-        <input type="date" id="start-date" />
-        <label for="end-date">End Date:</label>
-        <input type="date" id="end-date" />
-        <button id="book-seat">Book Seat</button>
-        <button id="add-seat">Add Seat</button>
-        <button id="edit-seat">Edit Seat</button>
-        <button id="delete-seats">Delete Selected Seats</button>
+        <div class="first-set">
+          <label for="job-code">Job Code:</label>
+          <input type="text" id="job-code" />
+          <label for="time-slot">Time Slot:</label>
+          <select id="time-slot">
+            <option value="morning">Morning</option>
+            <option value="evening">Evening</option>
+            <option value="full-time">Full Time</option>
+          </select>
+        </div>
+        <div class="second-set">
+          <div class="start-date">
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" />
+          </div>
+          <div class="end-date">
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" />
+          </div>
+        </div>
+        <div class="third-set">
+          <button id="book-seat">Book Seat</button>
+        </div>
+        <div class="fourth-seat">
+          <button id="add-seat">Add Seat</button>
+          <button id="edit-seat">Edit Seat</button>
+          <button id="delete-seats">Delete Selected Seats</button>
+        </div>
       </div>
 
       <div class="seat-map" id="seat-map">
@@ -62,7 +68,8 @@
 
     <div class="container">
       <label for="filter-date">Filter Date:</label>
-      <input type="date" id="filter-date" />
+      <input type="date" id="filter-date" value="" />
+      <!-- Remove any default value -->
       <label for="filter-job-code">Filter Job Code:</label>
       <select id="filter-job-code">
         <!-- Job codes will be dynamically added here -->
