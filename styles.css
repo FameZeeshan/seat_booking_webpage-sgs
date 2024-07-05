@@ -1,6 +1,10 @@
-/* styles.css */
+/* Reset and basic styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-/* General styles */
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
@@ -13,19 +17,20 @@ header {
 }
 
 h1 {
-  font-size: 2em;
-  margin-bottom: 5px;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
 h4 {
-  font-size: 1.5em;
-  margin-top: 0;
-  color: #616161;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .container {
-  background-color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
+  background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
@@ -34,19 +39,53 @@ h4 {
 .label-container {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 20px;
+}
+
+.label-container > * {
   margin-bottom: 10px;
 }
 
-/* Seat map styles */
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 150px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Seat map styling */
 .seat-map {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
 }
 
 .seat {
+  width: 60px;
   height: 60px;
   background-color: #cfd8dc;
   display: flex;
@@ -56,16 +95,38 @@ h4 {
   border-radius: 5px;
   cursor: pointer;
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
-/* Summary table styles */
+.seat.selected {
+  background-color: #ffc107;
+}
+
+.seat.booked-morning {
+  background-color: #ef5350; /* Red for morning */
+}
+
+.seat.booked-evening {
+  background-color: #66bb6a; /* Green for evening */
+}
+
+.seat.booked-full {
+  background-color: #42a5f5; /* Blue for full-time */
+}
+
+.seat-number {
+  font-weight: bold;
+}
+
+/* Summary table styling */
 #summary-table {
   width: 100%;
-  margin-top: 20px;
   border-collapse: collapse;
-  background-color: #ffffff;
+  background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 #summary-table th,
@@ -87,62 +148,26 @@ h4 {
   background-color: #e0e0e0;
 }
 
-/* Form elements styles */
-input[type="text"],
-input[type="date"],
-select {
-  padding: 8px;
-  font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
-  width: calc(100% - 20px); /* Adjust width */
-  max-width: 300px; /* Limit maximum width */
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: #ffffff;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-button.secondary {
-  background-color: #757575;
-}
-
-button.secondary:hover {
-  background-color: #616161;
-}
-
 /* Responsive design */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .container {
     padding: 10px;
   }
 
   .seat {
+    width: 50px;
     height: 50px;
   }
+}
 
-  input[type="text"],
-  input[type="date"],
-  select,
-  button {
-    padding: 6px;
-    font-size: 0.9em;
+@media (max-width: 576px) {
+  .container {
+    padding: 5px;
+  }
+
+  .seat {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
   }
 }

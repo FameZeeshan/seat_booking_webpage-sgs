@@ -13,6 +13,12 @@
     </header>
 
     <div class="container">
+      <label for="view-date">Select Date to View Availability:</label>
+      <input type="date" id="view-date" />
+      <button id="today-button">Today</button>
+    </div>
+
+    <div class="container">
       <div class="label-container">
         <label for="job-code">Job Code:</label>
         <input type="text" id="job-code" />
@@ -28,13 +34,16 @@
         <input type="date" id="end-date" />
         <button id="book-seat">Book Seat</button>
         <button id="add-seat">Add Seat</button>
+        <button id="edit-seat">Edit Seat</button>
         <button id="delete-seats">Delete Selected Seats</button>
       </div>
 
       <div class="seat-map" id="seat-map">
         <!-- Seats will be dynamically added here -->
       </div>
+    </div>
 
+    <div class="container">
       <table id="summary-table">
         <thead>
           <tr>
@@ -49,15 +58,15 @@
           <!-- Summary table rows will be dynamically added here -->
         </tbody>
       </table>
+    </div>
 
-      <div>
-        <label for="filter-date">Filter Date:</label>
-        <input type="date" id="filter-date" />
-        <label for="filter-job-code">Filter Job Code:</label>
-        <select id="filter-job-code">
-          <!-- Job codes will be dynamically added here -->
-        </select>
-      </div>
+    <div class="container">
+      <label for="filter-date">Filter Date:</label>
+      <input type="date" id="filter-date" />
+      <label for="filter-job-code">Filter Job Code:</label>
+      <select id="filter-job-code">
+        <!-- Job codes will be dynamically added here -->
+      </select>
     </div>
 
     <script src="script.js"></script>

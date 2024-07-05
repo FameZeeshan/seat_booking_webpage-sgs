@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const seatMap = document.getElementById("seat-map");
   const bookSeatButton = document.getElementById("book-seat");
   const addSeatButton = document.getElementById("add-seat");
+  const editSeatButton = document.getElementById("edit-seat"); // New edit seat button
   const deleteSeatsButton = document.getElementById("delete-seats");
   const jobCodeInput = document.getElementById("job-code");
   const timeSlotSelect = document.getElementById("time-slot");
   const startDateInput = document.getElementById("start-date");
   const endDateInput = document.getElementById("end-date");
-  const viewDateInput = document.getElementById("view-date");
   const filterDateInput = document.getElementById("filter-date");
   const todayButton = document.getElementById("today-button");
   const summaryTableBody = document.querySelector("#summary-table tbody");
@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     seat.setAttribute("data-seat-number", number);
     const seatNumberDiv = document.createElement("div");
     seatNumberDiv.classList.add("seat-number");
-    seatNumberDiv.contentEditable = true; // Make seat number editable
     seatNumberDiv.innerText = number;
     seat.appendChild(seatNumberDiv);
     seatMap.appendChild(seat);
@@ -47,6 +46,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Create and append initial seats to the seat map
   seatNumbers.forEach(createSeat);
+
+  // Edit Seat button click handler
+
+  editSeatButton.addEventListener("click", () => {
+    const selectedSeat = seatMap.querySelector(".seat.selected");
+
+    if (selectedSeat) {
+      // Get current seat number
+      const currentSeatNumber = selectedSeat.getAttribute("data-seat-number");
+
+      // Prompt user for new seat number
+      const newSeatNumber = prompt("Enter new seat number:");
+
+      // Check if user canceled or entered an empty string
+      if (newSeatNumber === null || newSeatNumber.trim() === "") {
+        return; // Cancelled or no input, do nothing
+      }
+
+      // Convert input to number
+      const newSeatNumberInt = parseInt(newSeatNumber.trim(), 10);
+
+      // Check if the input is a valid number
+      if (isNaN(newSeatNumberInt)) {
+        alert("Please enter a valid number for the seat.");
+        return;
+      }
+
+      // Check if the new seat number is unique among other seats
+      if (seatNumbers.includes(newSeatNumberInt)) {
+        alert("This seat number is already taken. Please choose another.");
+        return;
+      }
+
+      // Update the seat number attribute and display
+      selectedSeat.setAttribute("data-seat-number", newSeatNumberInt);
+      selectedSeat.querySelector(".seat-number").innerText = newSeatNumberInt;
+
+      // Update seatNumbers array if necessary (if editing a previously added seat)
+      const index = seatNumbers.indexOf(parseInt(currentSeatNumber, 10));
+      if (index !== -1) {
+        seatNumbers[index] = newSeatNumberInt;
+      }
+
+      alert(
+        `Seat ${currentSeatNumber} successfully edited to ${newSeatNumberInt}.`
+      );
+    } else {
+      alert("Please select a seat to edit.");
+    }
+  });
 
   // Book Seat button click handler
   bookSeatButton.addEventListener("click", () => {
@@ -236,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to update job code list filter
   function updateJobCodeList() {
-    const jobCodeList = document.getElementById("filter-job-code");
+    const jobCodeList = document.getElementById("job-code-list");
     jobCodeList.innerHTML = "";
     const jobCodeOptions = Array.from(jobCodes).map(
       (jobCode) => `<option value="${jobCode}">${jobCode}</option>`
@@ -246,9 +295,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Initial update of summary table and job code list
-  const initialViewDate = new Date().toISOString().split("T")[0];
-  viewDateInput.value = initialViewDate;
-  filterDateInput.value = initialViewDate;
+  const initialViewDate =
+    filterDateInput.value || new Date().toISOString().split("T")[0];
   updateSummaryTable(initialViewDate);
   updateJobCodeList();
 
@@ -261,7 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Today button click event listener
   todayButton.addEventListener("click", () => {
     const today = new Date().toISOString().split("T")[0];
-    viewDateInput.value = today;
     filterDateInput.value = today;
     updateSummaryTable(today);
   });
